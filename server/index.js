@@ -1,4 +1,4 @@
-import { config } from './config';
+const PORT = process.env.PORT || 3000;
 const cors = require('cors-express');
 const express = require('express');
 const app = express();
@@ -19,9 +19,7 @@ app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
 
 
-mongoose.connect(config.dbURI, {
-  useMongoClient: true,
-});
+ongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks");
 
 // CONNECTION EVENTS
 // When successfully connected
@@ -123,5 +121,6 @@ router.route('/favorites/:id')
         res.status(204).end();
     });
 
-app.listen(config.port,
-  console.log('Listening on port ', config.port));
+    app.listen(PORT, function() {
+      console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+    });
