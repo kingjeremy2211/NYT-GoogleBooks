@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { BookRow } from './BookRow';
-
+import React from 'react';
 export const BookList = ({data, highlight, visibility}) => {
 
 	if (visibility && data[0] !== null) {

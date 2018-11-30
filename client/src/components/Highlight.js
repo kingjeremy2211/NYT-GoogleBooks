@@ -3,7 +3,7 @@ import MdStarHalf from 'react-icons/lib/md/star-half';
 import MdStarOutline from 'react-icons/lib/md/star-outline';
 import MdStar from 'react-icons/lib/md/star';
 import MdHighlightRemove from 'react-icons/lib/md/highlight-remove';
-
+import React from 'react';
 export const Highlight = ({ data, visibility, addFavorite, removeFavorite }) => {
 
 	const color = {background: 'white', border: 'white', color: 'red'};

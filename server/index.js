@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const cors = require('cors-express');
 const express = require('express');
 const app = express();
@@ -49,12 +49,12 @@ process.on('SIGINT', function() {
 const Favorite = require('./models/favorite.js');
 
 // Make static assets available to UI
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, '../client/public')));
 
 const router = express.Router();
 // Serve the UI over express server
 router.get('/', function(req, res){
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  res.sendFile(path.join(__dirname, '../client/public/index.html'));
 });
 
 //Initialize API

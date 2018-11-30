@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 
 export const DashBoard = ({type, query, queryObject}) => {
 	
@@ -11,6 +12,9 @@ export const DashBoard = ({type, query, queryObject}) => {
 			query: _query.value
 		});
 	};
+
+	const categoryChange = () => {
+	}
 
 	return(
 		<nav aria-label="Book search form" id="book-form">

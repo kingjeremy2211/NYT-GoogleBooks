@@ -6,7 +6,7 @@ import { Favorites } from './Favorites';
 import { Menu } from './Menu';
 import idb from '../../node_modules/idb';
 import axios from 'axios';
-
+import React from 'react';
 export class App extends Component {
 
 	constructor(props) {
