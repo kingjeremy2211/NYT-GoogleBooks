@@ -5,8 +5,7 @@ self.addEventListener('install', function(event) {
         '/',
         'index.html',
         'manifest.json',
-        'assets/bundle.js',        
-        'assets/img/icon-128x128.png'
+        'assets/bundle.js'
       ]);
     })
   );
