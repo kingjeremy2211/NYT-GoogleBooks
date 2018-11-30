@@ -1,7 +1,7 @@
-import { FaHome } from 'react-icons/lib/fa/';
-import { MdStar } from 'react-icons/lib/md/';
-import { GoMarkGithub } from 'react-icons/lib/go/';
 import React from 'react';
+import { FaHome } from 'react-icons/fa/';
+import { MdStar } from 'react-icons/md/';
+import { GoMarkGithub } from 'react-icons/go/';
 export const Menu = ({setVisibility, visibility}) => {
 	
 	const color = { color: '#BDBDBD'};

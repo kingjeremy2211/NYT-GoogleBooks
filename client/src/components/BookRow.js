@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { MdStarHalf } from 'react-icons/lib/md/';
-import { MdStarOutline } from 'react-icons/lib/md/';
-import { MdStar } from 'react-icons/lib/md/';
+import { MdStarHalf } from 'react-icons/md/';
+import { MdStars } from 'react-icons/md/';
+import { MdStar } from 'react-icons/md/';
 import Scroll from 'react-scroll';
 import React from 'react';
 export const BookRow = ({rowNumber, title, author, rating, highlight}) => {
@@ -21,7 +21,7 @@ export const BookRow = ({rowNumber, title, author, rating, highlight}) => {
 		let i, j = 0;
 		if(rating) {
 			for (i = 0; i < 5; i++) {
-				stars.push(<MdStarOutline key={j} />);
+				stars.push(<MdStars key={j} />);
 				j++;
 			}
 		}

@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import MdStarHalf from 'react-icons/lib/md/star-half';
-import MdStarOutline from 'react-icons/lib/md/star-outline';
-import MdStar from 'react-icons/lib/md/star';
-import MdHighlightRemove from 'react-icons/lib/md/highlight-remove';
 import React from 'react';
+import { PropTypes } from 'prop-types';
+import { MdStarHalf } from 'react-icons/md/';
+import { MdStars } from 'react-icons/md/';
+import { MdStar } from 'react-icons/md/';
+import { MdHighlightOff } from 'react-icons/md/';
 export const Highlight = ({ data, visibility, addFavorite, removeFavorite }) => {
 
 	const color = {background: 'white', border: 'white', color: 'red'};
@@ -14,7 +14,7 @@ export const Highlight = ({ data, visibility, addFavorite, removeFavorite }) => 
 		let i, j;
 		if(rating) {
 			for (i = 0; i < 5; i++) {
-				stars.push(<MdStarOutline key={i} />);
+				stars.push(<MdStars key={i} />);
 			}
 		}
 		for (i = 0; i < Math.floor(rating); i++) {
@@ -50,7 +50,7 @@ export const Highlight = ({ data, visibility, addFavorite, removeFavorite }) => 
 				<div>
 					{!visibility.favorites ? 
 						<button onClick={() => addToFavorites()}><MdStar /> Favorite</button> : 
-						<button style={color} onClick={() => removeFromFavorites()}><MdHighlightRemove /> Remove</button>}
+						<button style={color} onClick={() => removeFromFavorites()}><MdHighlightOff /> Remove</button>}
 					{(data.price) ? <a href={data.purchase}> Buy ${data.price}</a> : null}
 				</div>
 			</section>
