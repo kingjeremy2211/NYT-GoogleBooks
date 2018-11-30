@@ -1,17 +1,16 @@
-/*jshint esversion: 6 */
 import { Component } from 'react';
 import { DashBoard } from './DashBoard';
 import { Highlight } from './Highlight';
 import { BookList } from './BookList';
 import { Favorites } from './Favorites';
 import { Menu } from './Menu';
-import idb from 'idb';
-import axios from 'axios';
-import React from 'react';
+import idb from '../../node_modules/idb';
+import axios from 'axios'
+
 export class App extends Component {
 
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			items: [
 				null
@@ -29,7 +28,7 @@ export class App extends Component {
 			favorites: [
 				null
 			]
-		};
+		}
 		this.updateQuery = this.updateQuery.bind(this);
 		this.updateHighlight = this.updateHighlight.bind(this);
 		this.addFavorite = this.addFavorite.bind(this);
@@ -103,7 +102,7 @@ export class App extends Component {
 						element.description = null;
 					}	
 					this.setState(this.state.items.splice(i, 1, element));
-				});				
+				})				
 		}).catch((err) => {
 				console.error('There was an error fetching data', err);
 			});
@@ -112,11 +111,11 @@ export class App extends Component {
 	componentDidMount() {		
 		// Populate the favorites list
 		axios.get('/api/favorites')
-		.then(response => {
+		.then(response =>{
 			console.log('Fetched from mongo', response.data);
 			this.setState({
 				favorites: response.data
-			});
+			})
 		}).catch(err => {
 			console.error(err);
 		});
@@ -127,7 +126,7 @@ export class App extends Component {
 			// Open IDB
 			const dbPromise = idb.open('favorites', 1, upgradeDB => {
 			// Create an object store named weather if none exists
-				var favorites = upgradeDB.createObjectStore(favorites);
+				let favorites = upgradeDB.createObjectStore('favorites');
 			}).catch(error => {
 					console.error('IndexedDB:', error);
 			});
@@ -167,7 +166,7 @@ export class App extends Component {
 		}, () => {
 			this.fetchQuery();
 		});
-		
+		ga('send', 'event', 'Dashboard', 'New query');
 	}
 
 	// Show all the data pertaining to an item
@@ -180,7 +179,7 @@ export class App extends Component {
 				favorites: false
 			}
 		});
-		
+		ga('send', 'event', 'Book List', 'View query highlight');
 	}
 
 	updateFavoriteHighlight(highlight) {
@@ -192,7 +191,7 @@ export class App extends Component {
 				favorites: true
 			}
 		});
-		
+		ga('send', 'event', 'Favorites List', 'View favorite highlight');
 
 	}
 
@@ -211,7 +210,7 @@ export class App extends Component {
 		// Open IDB
 		const dbPromise = idb.open('favorites', 1, upgradeDB => {
 			// Create an object store named weather if none exists
-				var favorites = upgradeDB.createObjectStore(favorites);
+				let favorites = upgradeDB.createObjectStore('favorites');
 		}).catch(error => {
 				console.error('IndexedDB:', error);
 		});
@@ -219,7 +218,7 @@ export class App extends Component {
 		// Add favorite to IDB
 		dbPromise.then(db => {
 			let tx = db.transaction('favorites', 'readwrite');
-			let favorites = tx.objectStore('favorites', 'readwrite');
+			let favorites= tx.objectStore('favorites', 'readwrite');
 			favorites.add(data, data.title);
 		}).catch(error => {
 				console.error('IndexedDB:', error);
@@ -233,7 +232,7 @@ export class App extends Component {
 		.catch(function (err) {
 			console.log(err);
 		});  	
-		
+		ga('send', 'event', 'Book List', 'Add to favorites');
 	}
 
 	removeFavorite(data) {
@@ -249,7 +248,7 @@ export class App extends Component {
 		});
 		const dbPromise = idb.open('favorites', 1, upgradeDB => {
         // Create an object store named weather if none exists
-	        var favorites = upgradeDB.createObjectStore(favorites);
+	        let favorites = upgradeDB.createObjectStore('favorites');
 	    }).catch(error => {
 	        console.error('IndexedDB:', error);
 	    });
@@ -259,14 +258,14 @@ export class App extends Component {
             favorites.delete(data.title);
         }).catch(error => {
             console.error('IndexedDB:', error);
-        });
-		
+        })
+		ga('send', 'event', 'Highlight', 'Remove favorite');
 		axios.delete(`/api/favorites/${data._id}`, data)
 			.then(function(res){
 				console.log(res);
 			}).catch(function(err){
 				console.error(err);
-			});
+			})
 	}
   
 	// Set state for which parts of the UI are visible
@@ -307,5 +306,3 @@ export class App extends Component {
 		)
 	}
 };
-
-export default App;
