@@ -11,7 +11,7 @@ export const Highlight = ({ data, visibility, addFavorite, removeFavorite }) => 
 	// Transform numerical rating into 5 star UI element
 	const renderStars = (rating) => {
 		let stars = [];
-		let i, j;
+		let i;
 		if(rating) {
 			for (i = 0; i < 5; i++) {
 				stars.push(<MdStars key={i} />);
@@ -57,8 +57,9 @@ export const Highlight = ({ data, visibility, addFavorite, removeFavorite }) => 
 		)
 	} else {
 		return null;
-	};
+	}
 };
+
 
 Highlight.propTypes = {
 	data: PropTypes.object
