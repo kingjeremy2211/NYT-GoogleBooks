@@ -32,6 +32,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
+    "express": "^4.16.4",
     "idb": "^2.0.3",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
