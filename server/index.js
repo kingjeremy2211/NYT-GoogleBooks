@@ -1,4 +1,4 @@
-var config = require('./config');
+import { config } from './config';
 const cors = require('cors-express');
 const express = require('express');
 const app = express();
