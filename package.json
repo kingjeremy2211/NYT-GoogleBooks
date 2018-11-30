@@ -27,6 +27,7 @@
     "axios": "^0.16.2",
     "concurrently": "^4.1.0",
     "cors-express": "^0.2.2",
+    "express": "^4.16.4",
     "if-env": "^1.0.4"
   }
 }
