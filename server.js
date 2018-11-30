@@ -1,5 +1,5 @@
 require('dotenv').config();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 const cors = require('cors-express');
 const express = require('express');
 const app = express();
@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
 
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks");
+mongoose.connect(process.env.MONGODB_URI);
 
 // CONNECTION EVENTS
 // When successfully connected
@@ -122,6 +122,6 @@ router.route('/favorites/:id')
         res.status(204).end();
     });
 
-    app.listen(PORT, function() {
-      console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+    app.listen(PORT, () => {
+      console.log(`App listening on http://localhost:${PORT}`);
     });
