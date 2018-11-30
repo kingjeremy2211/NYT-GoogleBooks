@@ -21,7 +21,7 @@ export const BookRow = ({rowNumber, title, author, rating, highlight}) => {
 		let i, j = 0;
 		if(rating) {
 			for (i = 0; i < 5; i++) {
-				stars.push(<MdStarOutline key={j} />);
+				stars.push(<MdStars key={j} />);
 				j++;
 			}
 		}
@@ -34,7 +34,7 @@ export const BookRow = ({rowNumber, title, author, rating, highlight}) => {
 			j++;
 		}	
 			return stars;
-	}
+	};
 
 	return(
 	<div onClick={click}>
