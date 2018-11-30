@@ -1,6 +1,6 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { BookRow } from './BookRow';
-import React from 'react';
 export const Favorites = ({data, highlight, visibility}) => {
 
 	if (visibility) {
