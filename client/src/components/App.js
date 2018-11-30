@@ -97,11 +97,11 @@ export class App extends Component {
 					} else {
 						element.price = null;
 					}	
-					// if ( typeof item.volumeInfo.description != 'undefined') {
-					// 	element.description = item.volumeInfo.description;
-					// } else {
-					// 	element.description = null;
-					// }	
+					if ( typeof item.volumeInfo.description != 'undefined') {
+						element.description = item.volumeInfo.description;
+					} else {
+						element.description = null;
+					}	
 					this.setState(this.state.items.splice(i, 1, element));
 				});				
 		}).catch((err) => {
