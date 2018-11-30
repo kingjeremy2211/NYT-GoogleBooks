@@ -19,12 +19,12 @@ app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
 
 
-ongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks");
 
 // CONNECTION EVENTS
 // When successfully connected
 mongoose.connection.on('connected', function () {  
-  console.log('Mongoose default connection open to ' + config.dbURI);
+  console.log('Mongoose default connection open to ' + process.env.MONGODB_URI);
 }); 
 
 // If the connection throws an error
