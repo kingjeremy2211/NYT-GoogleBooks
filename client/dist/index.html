@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="SVG Weather">
+    <link rel="icon" sizes="192x192" href="assets/img/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="SVG Weather">
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="assets/img/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
+
+    <!-- Color the status bar on mobile devices -->
+    <meta name="theme-color" content="#03A9F4">
+
+	<title>NYT-Googlebooks</title>
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<link rel="manifest" href="manifest.json">
+</head>
+<body>
+	<main id="reactTarget">
+
+	</main>
+
+	<script src="assets/bundle.js"></script>
+    <!-- http://schema.org/ -->
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebApplication",
+        "accessibilityAPI": "ARIA",
+        "accessibilityControl": [
+            "fullKeyboardControl",
+            "fullMouseControl"
+        ],
+        "applicationCategory": "Resource",
+        "offers": {
+            "price": "0"
+        },
+        "featureList": "Search, Save Favorites, Buy" ,
+        "ReleaseNotes": "Initial Release",
+        "screenshot": null,
+        "about": "React app that allows users to search and save and buy books",
+        "author": "Jeremy King"
+    }
+    </script>
+</body>
+</html>
