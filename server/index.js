@@ -1,4 +1,4 @@
-const config = require('./config');
+var config = require('./config');
 const cors = require('cors-express');
 const express = require('express');
 const app = express();
