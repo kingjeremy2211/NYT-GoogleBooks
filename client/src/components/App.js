@@ -1,3 +1,4 @@
+import React from 'react';
 import { Component } from 'react';
 import { DashBoard } from './DashBoard';
 import { Highlight } from './Highlight';
@@ -166,7 +167,7 @@ export class App extends Component {
 		}, () => {
 			this.fetchQuery();
 		});
-		ga('send', 'event', 'Dashboard', 'New query');
+		
 	}
 
 	// Show all the data pertaining to an item
@@ -179,7 +180,7 @@ export class App extends Component {
 				favorites: false
 			}
 		});
-		ga('send', 'event', 'Book List', 'View query highlight');
+		
 	}
 
 	updateFavoriteHighlight(highlight) {
@@ -191,7 +192,7 @@ export class App extends Component {
 				favorites: true
 			}
 		});
-		ga('send', 'event', 'Favorites List', 'View favorite highlight');
+		
 
 	}
 
@@ -232,7 +233,7 @@ export class App extends Component {
 		.catch(function (err) {
 			console.log(err);
 		});  	
-		ga('send', 'event', 'Book List', 'Add to favorites');
+		
 	}
 
 	removeFavorite(data) {
@@ -259,7 +260,7 @@ export class App extends Component {
         }).catch(error => {
             console.error('IndexedDB:', error);
         })
-		ga('send', 'event', 'Highlight', 'Remove favorite');
+		
 		axios.delete(`/api/favorites/${data._id}`, data)
 			.then(function(res){
 				console.log(res);
