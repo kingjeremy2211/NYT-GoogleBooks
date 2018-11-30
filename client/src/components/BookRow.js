@@ -38,8 +38,7 @@ export const BookRow = ({rowNumber, title, author, rating, highlight}) => {
 
 	return(
 	<div onClick={click}>
-			<p>{title}</p>
-			<span>{author}</span>
+			<span>{title}</span>
 			<span>{renderStars(rating)}</span>
 	</div>
 	)
