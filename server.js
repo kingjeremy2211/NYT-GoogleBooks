@@ -17,7 +17,8 @@ const options = {
 app.use(cors(options));
 // configure app to use body parser to extract JSON from POST
 app.use(bodyParser.urlencoded({ extended : true }));
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true } || "mongodb://localhost/googlebooks");
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks");
 
 // Import model
 const Favorite = require('./models/favorite.js');

@@ -247,8 +247,8 @@ export class App extends Component {
 				favorites: true
 			},
 			favorites: [...remove]
-		});
-	
+		})
+		
 		// const dbPromise = idb.open('favorites', 1, upgradeDB => {
         // // Create an object store named weather if none exists
 	    //     let favorites = upgradeDB.createObjectStore('favorites');
