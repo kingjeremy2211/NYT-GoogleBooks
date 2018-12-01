@@ -127,7 +127,7 @@ export class App extends Component {
 			// Open IDB
 			const dbPromise = idb.open('favorites', 1, upgradeDB => {
 			// Create an object store named weather if none exists
-				var favorites = upgradeDB.createObjectStore(favorites);
+				let favorites = upgradeDB.createObjectStore('favorites');
 			}).catch(error => {
 					console.error('IndexedDB:', error);
 			});
@@ -211,7 +211,7 @@ export class App extends Component {
 		// Open IDB
 		const dbPromise = idb.open('favorites', 1, upgradeDB => {
 			// Create an object store named weather if none exists
-				var favorites = upgradeDB.createObjectStore(favorites);
+				let favorites = upgradeDB.createObjectStore('favorites');
 		}).catch(error => {
 				console.error('IndexedDB:', error);
 		});
@@ -249,7 +249,7 @@ export class App extends Component {
 		});
 		const dbPromise = idb.open('favorites', 1, upgradeDB => {
         // Create an object store named weather if none exists
-	        var favorites = upgradeDB.createObjectStore(favorites);
+	        let favorites = upgradeDB.createObjectStore('favorites');
 	    }).catch(error => {
 	        console.error('IndexedDB:', error);
 	    });
