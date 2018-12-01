@@ -17,8 +17,36 @@ const options = {
 app.use(cors(options));
 // configure app to use body parser to extract JSON from POST
 app.use(bodyParser.urlencoded({ extended : true }));
+app.use(bodyParser.json());
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks");
+
+mongoose.connect(process.env.MONGODB_URI, {
+  useMongoClient: true,
+});
+
+// CONNECTION EVENTS
+// When successfully connected
+// mongoose.connection.on('connected', function () {  
+//   console.log('Mongoose default connection open to ' + process.env.MONGODB_URI);
+// }); 
+
+// // If the connection throws an error
+// mongoose.connection.on('error',function (err) {  
+//   console.log('Mongoose default connection error: ' + err);
+// }); 
+
+// // When the connection is disconnected
+// mongoose.connection.on('disconnected', function () {  
+//   console.log('Mongoose default connection disconnected'); 
+// });
+
+// // If the Node process ends, close the Mongoose connection 
+// process.on('SIGINT', function() {  
+//   mongoose.connection.close(function () { 
+//     console.log('Mongoose default connection disconnected through app termination'); 
+//     process.exit(0); 
+//   }); 
+// }); 
 
 // Import model
 const Favorite = require('./models/favorite.js');
