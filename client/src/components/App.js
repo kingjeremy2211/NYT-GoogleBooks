@@ -5,7 +5,7 @@ import { Highlight } from './Highlight';
 import { BookList } from './BookList';
 import { Favorites } from './Favorites';
 import { Menu } from './Menu';
-// import  idb  from 'idb';
+import idb from '../../node_modules/idb';
 import axios from 'axios'
 
 export class App extends Component {
@@ -120,34 +120,33 @@ export class App extends Component {
 		}).catch(err => {
 			console.error(err);
 		});
-	}
 
-	// 	// Offline
-	// 	if(!window.navigator.onLine) {
-	// 		setTimeout(function() {alert('You appear to be offline. Your favorites are still avaiable to you'); }, 1);
-	// 		// Open IDB
-	// 		const dbPromise = idb.open('favorites', 1, upgradeDB => {
-	// 		// Create an object store named weather if none exists
-	// 			let favorites = upgradeDB.createObjectStore('favorites');
-	// 		}).catch(error => {
-	// 				console.error('IndexedDB:', error);
-	// 		});
-	// 		//Get all the favorites
-	// 		dbPromise.then(db => {
-	// 		return db.transaction('favorites')
-	// 			.objectStore('favorites').getAll();
-	// 		}).then(allObjs => {
-	// 			this.setState({
-	// 				favorites: allObjs,
-	// 				visibility: {
-	// 				highlight: false,
-	// 				booklist: false,
-	// 				favorites: true
-	// 				}
-	// 			});
-	// 		});
-	// 	}		
-	// }
+		// Offline
+		if(!window.navigator.onLine) {
+			setTimeout(function() {alert('You appear to be offline. Your favorites are still avaiable to you'); }, 1);
+			// Open IDB
+			const dbPromise = idb.open('favorites', 1, upgradeDB => {
+			// Create an object store named weather if none exists
+				let favorites = upgradeDB.createObjectStore('favorites');
+			}).catch(error => {
+					console.error('IndexedDB:', error);
+			});
+			//Get all the favorites
+			dbPromise.then(db => {
+			return db.transaction('favorites')
+				.objectStore('favorites').getAll();
+			}).then(allObjs => {
+				this.setState({
+					favorites: allObjs,
+					visibility: {
+					highlight: false,
+					booklist: false,
+					favorites: true
+					}
+				});
+			});
+		}		
+	}
 
 	componentWillUnmount() {
 		this.serverRequest.abort();
@@ -206,25 +205,25 @@ export class App extends Component {
 				booklist: false,
 				favorites: true
 			},
-			favorites: [...this.state.favorites, data]
+			favorites: [ ...this.state.favorites, data]
 		});
 
 		// Open IDB
-		// const dbPromise = idb.open('favorites', 1, upgradeDB => {
-		// 	// Create an object store named weather if none exists
-		// 		let favorites = upgradeDB.createObjectStore('favorites');
-		// }).catch(error => {
-		// 		console.error('IndexedDB:', error);
-		// });
+		const dbPromise = idb.open('favorites', 1, upgradeDB => {
+			// Create an object store named weather if none exists
+				let favorites = upgradeDB.createObjectStore('favorites');
+		}).catch(error => {
+				console.error('IndexedDB:', error);
+		});
 
 		// Add favorite to IDB
-		// dbPromise.then(db => {
-		// 	let tx = db.transaction('favorites', 'readwrite');
-		// 	let favorites= tx.objectStore('favorites', 'readwrite');
-		// 	favorites.add(data, data.title);
-		// }).catch(error => {
-		// 		console.error('IndexedDB:', error);
-		// });
+		dbPromise.then(db => {
+			let tx = db.transaction('favorites', 'readwrite');
+			let favorites= tx.objectStore('favorites', 'readwrite');
+			favorites.add(data, data.title);
+		}).catch(error => {
+				console.error('IndexedDB:', error);
+		});
 
 		// Add favorite to mongoDB
 		axios.post('/api/favorites', data)
@@ -247,21 +246,20 @@ export class App extends Component {
 				favorites: true
 			},
 			favorites: [...remove]
-		})
-		
-		// const dbPromise = idb.open('favorites', 1, upgradeDB => {
-        // // Create an object store named weather if none exists
-	    //     let favorites = upgradeDB.createObjectStore('favorites');
-	    // }).catch(error => {
-	    //     console.error('IndexedDB:', error);
-	    // });
-		// dbPromise.then(db => {
-        //     let tx = db.transaction('favorites', 'readwrite');
-        //     let favorites= tx.objectStore('favorites', 'readwrite');
-        //     favorites.delete(data.title);
-        // }).catch(error => {
-        //     console.error('IndexedDB:', error);
-        // })
+		});
+		const dbPromise = idb.open('favorites', 1, upgradeDB => {
+        // Create an object store named weather if none exists
+	        let favorites = upgradeDB.createObjectStore('favorites');
+	    }).catch(error => {
+	        console.error('IndexedDB:', error);
+	    });
+		dbPromise.then(db => {
+            let tx = db.transaction('favorites', 'readwrite');
+            let favorites= tx.objectStore('favorites', 'readwrite');
+            favorites.delete(data.title);
+        }).catch(error => {
+            console.error('IndexedDB:', error);
+        })
 		
 		axios.delete(`/api/favorites/${data._id}`, data)
 			.then(function(res){
