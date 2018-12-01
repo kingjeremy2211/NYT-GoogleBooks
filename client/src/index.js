@@ -12,7 +12,7 @@ render(
 
 // Check for browser support of service worker
 if ('serviceWorker' in navigator) {
- navigator.serviceWorker.register('./service-worker.js')
+ navigator.serviceWorker.register('./registerServiceWorker')
  .then(function(registration) {
    // Successful registration
    console.log('Hooray. Registration successful, scope is:', registration.scope);
