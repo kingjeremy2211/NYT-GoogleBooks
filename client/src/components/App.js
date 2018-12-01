@@ -5,7 +5,7 @@ import { Highlight } from './Highlight';
 import { BookList } from './BookList';
 import { Favorites } from './Favorites';
 import { Menu } from './Menu';
-import idb from 'idb';
+import  idb  from 'idb';
 import axios from 'axios'
 
 export class App extends Component {

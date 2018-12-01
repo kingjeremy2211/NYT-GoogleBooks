@@ -17,12 +17,7 @@ const options = {
 app.use(cors(options));
 // configure app to use body parser to extract JSON from POST
 app.use(bodyParser.urlencoded({ extended : true }));
-app.use(bodyParser.json());
-
-
-mongoose.connect(process.env.MONGODB_URI, {
-  useMongoClient: true,
-});
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks");
 
 // CONNECTION EVENTS
 // When successfully connected
