@@ -20,16 +20,16 @@ app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
 
 // import favorite db
-const Favorite = require('../client/src/components/favorite');
+const Favorite = require('./client/src/components/favorite');
 
 // Make static assets available to UI
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, './client/build')));
 // app.use(express.static('./client/build'));
 
 const router = express.Router();
 // Serve the UI over express server
 router.get('/', function(req, res){
-  res.sendFile(path.join(__dirname, '../client/public/index.html'))
+  res.sendFile(path.join(__dirname, './client/build/index.html'))
 });
 
 //Initialize API
