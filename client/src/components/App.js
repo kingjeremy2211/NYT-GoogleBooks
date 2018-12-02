@@ -23,7 +23,7 @@ export class App extends Component {
 			highlight: 0,
 			visibility: {
 				highlight: false,
-				bookist: false, 
+				booklist: false, 
 				favorites: false
 			},
 			favorites: [
