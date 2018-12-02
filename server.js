@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const options = {
       allow : {
           origin: '*',
@@ -14,13 +14,14 @@ const options = {
 //require db connection
 require('./models');
 
+// import favorite db
+const Favorite = require('./client/src/components/favorite');
+
+
 app.use(cors(options));
 // configure app to use bady parser to extract JSON from POST
 app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
-
-// import favorite db
-const Favorite = require('./client/src/components/favorite');
 
 // Make static assets available to UI
 app.use(express.static(path.join(__dirname, './client/build')));
@@ -29,7 +30,7 @@ app.use(express.static(path.join(__dirname, './client/build')));
 const router = express.Router();
 // Serve the UI over express server
 router.get('/', function(req, res){
-  res.sendFile(path.join(__dirname, './client/build/index.html'))
+  res.sendFile(path.join(__dirname, './client/public/index.html'))
 });
 
 //Initialize API
