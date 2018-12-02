@@ -1,10 +1,9 @@
-const config = require('./config');
 const cors = require('cors-express');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const options = {
       allow : {
           origin: '*',
@@ -12,51 +11,25 @@ const options = {
           headers: 'Content-Type, Authorization, Content-Length, X-Requested-With, X-HTTP-Method-Override'
       } 
     }
- 
+//require db connection
+require('./models');
+
 app.use(cors(options));
 // configure app to use bady parser to extract JSON from POST
 app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
 
-// Connect to database with mongoose 
-const mongoose = require('mongoose');
-
-mongoose.connect(config.MONGODB_URI || "mongodb://localhost/googlebooks");
-
-// CONNECTION EVENTS
-// When successfully connected
-mongoose.connection.on('connected', function () {  
-  console.log('Mongoose default connection open to ' + config.MONGODB_URI);
-}); 
-
-// If the connection throws an error
-mongoose.connection.on('error',function (err) {  
-  console.log('Mongoose default connection error: ' + err);
-}); 
-
-// When the connection is disconnected
-mongoose.connection.on('disconnected', function () {  
-  console.log('Mongoose default connection disconnected'); 
-});
-
-// If the Node process ends, close the Mongoose connection 
-process.on('SIGINT', function() {  
-  mongoose.connection.close(function () { 
-    console.log('Mongoose default connection disconnected through app termination'); 
-    process.exit(0); 
-  }); 
-}); 
-
 // Import model
 const Favorite = require('./models/favorite.js');
 
 // Make static assets available to UI
-app.use(express.static(path.join(__dirname, '../client/build')));
+// app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static('client/build'));
 
 const router = express.Router();
 // Serve the UI over express server
 router.get('/', function(req, res){
-  res.sendFile(path.join(__dirname, '../client/build/index.html'))
+  res.sendFile(path.join(__dirname, '../client/public/index.html'))
 });
 
 //Initialize API
