@@ -5,8 +5,8 @@ import { Highlight } from './Highlight';
 import { BookList } from './BookList';
 import { Favorites } from './Favorites';
 import { Menu } from './Menu';
-import idb from '../../node_modules/idb';
-import axios from 'axios'
+import idb from 'idb';
+import axios from 'axios';
 
 export class App extends Component {
 
@@ -127,7 +127,8 @@ export class App extends Component {
 			// Open IDB
 			const dbPromise = idb.open('favorites', 1, upgradeDB => {
 			// Create an object store named weather if none exists
-				let favorites = upgradeDB.createObjectStore('favorites');
+			//eslint-disable-next-line	
+			let favorites = upgradeDB.createObjectStore('favorites');
 			}).catch(error => {
 					console.error('IndexedDB:', error);
 			});
@@ -210,8 +211,9 @@ export class App extends Component {
 
 		// Open IDB
 		const dbPromise = idb.open('favorites', 1, upgradeDB => {
-			// Create an object store named weather if none exists
-				let favorites = upgradeDB.createObjectStore('favorites');
+			// Create an object store if none exists
+			//eslint-disable-next-line	
+			let favorites = upgradeDB.createObjectStore('favorites');
 		}).catch(error => {
 				console.error('IndexedDB:', error);
 		});
@@ -249,7 +251,8 @@ export class App extends Component {
 		});
 		const dbPromise = idb.open('favorites', 1, upgradeDB => {
         // Create an object store named weather if none exists
-	        let favorites = upgradeDB.createObjectStore('favorites');
+		//eslint-disable-next-line	
+		let favorites = upgradeDB.createObjectStore('favorites');
 	    }).catch(error => {
 	        console.error('IndexedDB:', error);
 	    });
