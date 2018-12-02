@@ -17,7 +17,7 @@ app.use(cors(options));
 app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
 
-// Connect to database with mongoose driver
+// Connect to database with mongoose 
 var mongoose = require('mongoose');
 mongoose.connect(config.MONGODB_URI || "mongodb://localhost/googlebooks");
 
@@ -70,7 +70,7 @@ router.route('/favorites')
 
   // Add a favortie entry to the database
   .post(function(req, res){
-    // Creat an entry
+    // Create an entry
     var favorite = new Favorite();
     favorite.title = req.body.title,
     favorite.authors = req.body.authors,
@@ -93,7 +93,7 @@ router.route('/favorites')
         });
       }
     })    
-  }) // End .post
+  })
   
   // Retrieve all favorites from the database
     .get(function(req, res){
@@ -104,7 +104,7 @@ router.route('/favorites')
           res.json(favorites);
         }
       });
-    }) // End .get
+    })
 
 // Route for specific records
 router.route('/favorites/:id')
