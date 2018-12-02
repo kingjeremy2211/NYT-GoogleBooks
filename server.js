@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 const options = {
       allow : {
           origin: '*',
