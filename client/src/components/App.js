@@ -149,9 +149,9 @@ export class App extends Component {
 		}		
 	}
 
-	componentWillUnmount() {
-		this.serverRequest.abort();
-	}
+	// componentWillUnmount() {
+	// 	this.serverRequest.abort();
+	// }
 
 	// Set the current query in state on change
 	updateQuery(queryObject) {

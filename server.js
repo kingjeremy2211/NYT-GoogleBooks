@@ -19,8 +19,8 @@ app.use(cors(options));
 app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
 
-// Import model
-const Favorite = require('./models/favorite.js');
+// import favorite db
+const Favorite = require('./client/src/components/favorite');
 
 // Make static assets available to UI
 // app.use(express.static(path.join(__dirname, '../client/build')));
@@ -29,7 +29,7 @@ app.use(express.static('client/build'));
 const router = express.Router();
 // Serve the UI over express server
 router.get('/', function(req, res){
-  res.sendFile(path.join(__dirname, '../client/public/index.html'))
+  res.sendFile(path.join(__dirname, './client/public/index.html'))
 });
 
 //Initialize API
