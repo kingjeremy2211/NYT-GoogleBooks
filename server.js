@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 const options = {
       allow : {
           origin: '*',
@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 
 // Connect to database with mongoose 
 const mongoose = require('mongoose');
+
 mongoose.connect(config.MONGODB_URI || "mongodb://localhost/googlebooks");
 
 // CONNECTION EVENTS
@@ -123,6 +124,6 @@ router.route('/favorites/:id')
     })
 
 // Start the API server
-app.listen(PORT, () => {
-	console.log(`Server listening on port ${PORT}.`);
+app.listen(port, () => {
+	console.log(`Server listening on port ${port}.`);
 });

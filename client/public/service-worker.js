@@ -4,8 +4,7 @@ self.addEventListener('install', function(event) {
       return cache.addAll([
         '/',
         'index.html',
-        'manifest.json',
-        'assets/bundle.js',        
+        'manifest.json',       
         'assets/img/icon-128x128.png'
       ]);
     })
