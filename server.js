@@ -15,7 +15,7 @@ const options = {
 require('./models');
 
 // import favorite db
-const Favorite = require('./client/src/components/favorite');
+const Favorite = require('./favorite');
 
 
 app.use(cors(options));
