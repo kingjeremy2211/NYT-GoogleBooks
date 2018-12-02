@@ -1,10 +1,11 @@
-var config = require('./config');
-var cors = require('cors-express');
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var path = require('path');
-var options = {
+const config = require('./config');
+const cors = require('cors-express');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const path = require('path');
+const PORT = process.env.PORT || 5000;
+const options = {
       allow : {
           origin: '*',
           methods: 'GET,PATCH,PUT,POST,DELETE,HEAD,OPTIONS',
@@ -18,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
 
 // Connect to database with mongoose 
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.connect(config.MONGODB_URI || "mongodb://localhost/googlebooks");
 
 // CONNECTION EVENTS
@@ -46,12 +47,12 @@ process.on('SIGINT', function() {
 }); 
 
 // Import model
-var Favorite = require('./models/favorite.js');
+const Favorite = require('./models/favorite.js');
 
 // Make static assets available to UI
-app.use(express.static(path.join(__dirname, '../client/public')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
-var router = express.Router();
+const router = express.Router();
 // Serve the UI over express server
 router.get('/', function(req, res){
   res.sendFile(path.join(__dirname, '../client/public/index.html'))
@@ -71,7 +72,7 @@ router.route('/favorites')
   // Add a favortie entry to the database
   .post(function(req, res){
     // Create an entry
-    var favorite = new Favorite();
+    const favorite = new Favorite();
     favorite.title = req.body.title,
     favorite.authors = req.body.authors,
     favorite.rating = req.body.rating,
@@ -122,5 +123,6 @@ router.route('/favorites/:id')
     })
 
 // Start the API server
-app.listen(config.PORT,
-  console.log('Listening on port ', config.PORT));
+app.listen(PORT, () => {
+	console.log(`Server listening on port ${PORT}.`);
+});
