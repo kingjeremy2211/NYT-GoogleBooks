@@ -55,7 +55,7 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 const router = express.Router();
 // Serve the UI over express server
 router.get('/', function(req, res){
-  res.sendFile(path.join(__dirname, '../client/public/index.html'))
+  res.sendFile(path.join(__dirname, '../client/build/index.html'))
 });
 
 //Initialize API
