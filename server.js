@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
-const port = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 const options = {
       allow : {
           origin: '*',
@@ -98,6 +98,6 @@ router.route('/favorites/:id')
     })
 
 // Start the API server
-app.listen(port, () => {
-	console.log(`Server listening on port ${port}.`);
+app.listen(PORT, () => {
+	console.log(`Server listening on port ${PORT}.`);
 });
